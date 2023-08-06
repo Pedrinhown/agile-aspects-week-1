@@ -2,7 +2,7 @@
 // This is only a SKELETON file for the 'Allergies' exercise. It's been provided as a
 // convenience to get you started writing code faster.
 //
-const dicionario = {
+const alergias = {
   eggs: 1,
   peanuts: 2,
   shellfish: 4,
@@ -14,22 +14,27 @@ const dicionario = {
 };
 
 export class Allergies {
-  //instancia alergia com base no valor digitado 
+
   constructor(alergia) {
     this.identificadorAlergia = alergia;
   }
-  //lista que vai conter os itens no qual é alergico
-  list() {
 
+  list() {
+    const itensAlergico = [];
+
+    for (const alergico in alergias) {
+      if ((this.identificadorAlergia & alergias[alergico]) !== 0) {
+        itensAlergico.push(alergico);
+      }
+    }
+
+    console.log(itensAlergico);
+    return itensAlergico;
   }
 
   allergicTo(alergico) {
 
-    if(this.identificadorAlergia === 0){
-      this.identificadorBinario = this.identificadorAlergia.toString(2)
-      console.log(this.identificadorAlergia.toString(2));
-      return false;
-    }
+    return (this.identificadorAlergia & alergias[alergico]) !== 0;
   }
 }
 
